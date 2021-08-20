@@ -28,7 +28,7 @@ st.table(frame[frame["Season"].isin([str(i) for i in range(2014,2022)])].groupby
     GA= ("GA","mean"),
     Pts= ("Pts","mean"),
     TotalPts= ("Pts","sum"),
-).sort_values("TotalPts", ascending=False).head(n=6))
+).sort_values("TotalPts", ascending=False).head(n=6).style.format("{:.2f}"))
 
 for years in more_itertools.windowed(range(2014,2022),n=3, step=1):
     st.header(f"{years[0]}-{years[-1]}")
@@ -42,4 +42,5 @@ for years in more_itertools.windowed(range(2014,2022),n=3, step=1):
         Pts= ("Pts","mean"),
         TotalPts= ("Pts","sum"),
     ).sort_values("Pts", ascending=False).head(n=6)
-    st.table(df)
+
+    st.table(df.style.format("{:.2f}"))
