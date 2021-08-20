@@ -7,10 +7,10 @@ import tabulate
 st.set_page_config(layout="wide")
 
 li = []
-all_files = glob.glob("*.csv")
+all_files = glob.glob("data/*.csv")
 for filename in all_files:
     df = pd.read_csv(filename, index_col=None, header=0)
-    df["Season"] = filename.split(".")[0]
+    df["Season"] = filename.split("/")[-1].split(".")[0]
     li.append(df)
 
 frame = pd.concat(li, axis=0, ignore_index=True)
